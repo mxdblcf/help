@@ -13,6 +13,3 @@ mongo compass(mongo可视化工具)
 {"_id":{"$oid":"5f95115a7587a6152fb34de0"},"name":"BBB","age":{"$numberInt":"20"},"_class":"com.easy.archiecture.domain.User"}
 
 
-1、将aop获取日志，存储到MongoDB中。并且把原来springmvc的项目，改写成spring boot。
-2、给上述项目中的controller加入swagger支持
-3、实现一个定时发送邮件的功能
