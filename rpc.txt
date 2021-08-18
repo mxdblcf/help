@@ -1,0 +1,87 @@
+curator-framework ：主要封装了zookeeper的基础api，包括对目录的增删改查等等。
+curator-recipes： 主要封装的就是zookeeper的高级api ,包括leader选举、断线重连、分布式锁、延迟创建目录等等的功能。
+
+
+
+
+
+zookeeper的节点类型：
+1、持久节点：  一旦创建，一直存在，不会因为创建节点的client断线而删除
+2、持久顺序节点： 就是在持久的基础上添加了一个顺序后缀（例如创建一个目录叫：test1,再创建一个顺序持久节点的时候，这个目录就会添加一个后缀,例如:test2）。
+3、临时节点： 如果创建节点的client与zk断链，此时该临时节点将会被zk自动删除。临时节点下不能创建子节点。
+4、临时顺序节点：
+
+
+
+
+URL:
+https://www.baidu.com/test?abc=123&bcd=1234
+https://10.2.3.56:8899/test?abc=123&bcd=1234
+dubbo://127.0.0.2/com.test.api.TestService?method=test&....
+dubbo://127.0.1.1:46867
+/com.easy.archiecture.service.DemoService
+?anyhost=true
+&application=dubbo-demo-provider
+&deprecated=false
+&dubbo=2.0.2
+&dynamic=true
+&generic=false
+&interface=com.easy.archiecture.service.DemoService
+&methods=firstTestDubbo
+&pid=272103
+&release=2.7.7
+&revision=1.0.0
+&side=provider
+&timestamp=1605405875737
+&version=1.0.0
+
+
+rpc要点：
+1、动态代理
+2、异常处理机制（重试机制、重连机制、熔断、限流、降级等等）
+3、OCP原则（开闭原则：对内修改封闭，对外开放扩展，例如:设计模式当中的工厂模式、IOC容器、SPI）
+
+
+JDK spi要点：
+1、通过使用META-INF中的文件来列出当前项目中使用某个接口的各种实现
+2、通过serviceLoader遍历文件。并将文件中写到的实现类缓存到一个linkedHashMap中。
+3、然后调用java.util.ServiceLoader#iterator这个方法去遍历寻找对应的实现，进行方法调用。
+
+
+
+String url="jdbc:xxx://xxx:xxx/db_test"
+
+DriverManager.getConnection(url,username,password);
+
+
+dubbo源码工程要点：
+
+1、切换分支：git checkout -b dubbo-2.7.7 dubbo-2.7.7
+2、maven命令编译：mvn clean install -Dmaven.test.skip=true
+3、将dubbo转换成idea工程 mvn idea:idea
+
+dubbo源码分析：
+1、dubbo spi(核心类：org.apache.dubbo.common.extension.ExtensionLoader)：
+    主要的static字段：org.apache.dubbo.common.extension.ExtensionLoader#strategies
+                    org.apache.dubbo.common.extension.ExtensionLoader#EXTENSION_LOADERS
+                    org.apache.dubbo.common.extension.ExtensionLoader#EXTENSION_INSTANCES
+    
+2、TimerTask（Hash时间轮,dubbo:重试、重连、心跳，更精确的时间轮设计：多级时间轮（Kafka、Quartz））
+3、URL
+
+
+消息队列(Kafka、rabbitMQ、activeMQ、RocketMQ)：
+1、服务解耦
+2、削峰填谷
+
+Kafka启动步骤：
+1、先启动zookeeper
+2、再通过命令启动kafka:./kafka-server-start.sh ../config/server.properties
+3、kafka的IO依赖于硬盘的顺序读写（kafka中使用offset来记录消息在硬盘文件上的偏移量）
+
+
+spring boot静态功能:
+1、模板引擎（Thymeleaf、freemarker、Velocity）
+2、约定俗成的静态资源目录（/static、/public、/resources、/META-INF/resources）
+
+

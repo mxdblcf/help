@@ -1,0 +1,34 @@
+jenkins：环境配置,默认jenkins会去/usr/bin当中寻找jdk运行环境。
+         所以，如果是自己下载的jdk安装在别的路径，需要通过ln -s命令，创建
+         软连接。
+         ln -s <jdk本身的位置> /usr/bin/java
+         jenkins在安装的时候会在系统中创建一个jenkins的用户名，并且该用户属于jenkins用户组。
+         如果在操作一些文件或者目录没有权限时，请考虑给jenkins组和jenkins用户赋予权限。
+
+
+1、修改端口号：编辑/etc/init.d/jenkins和/etc/default/jenkins搜索8080，将端口都替换掉
+2、为java启动做软链接：ln -s 你的java位置 /usr/bin/java
+
+
+安装npm的淘宝镜像
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+
+安装vue-cli（vue工程的脚手架）
+cnpm install vue-cli
+
+
+vue-cli的项目结构:
+        build目录：主要是一些关于webpack打包的文件（目前可以先忽略）
+        config目录：项目环境相关的配置
+        src目录：components用来编写一些公共组件（vue当中，页面上的共有的元素都是以组件的引入，然后去使用的。）
+                一个标准的组件通常会有三部分组成<template>中写html,<script>中写js，<style>写css。
+                router目录：用来定义各个页面的url和跳转组件的对应关系。
+                APP.vue:是整个vue的入口页面，
+                index.js:整个vue程序的js总管，用来处理Vue对象建立和对象中一些公共组件的加载。
+        static目录：用来存放一些静态资源，如图片，json配置数据等。
+        package.json：这里存放的事项目的基本信息，已经包依赖的基本信息。
+
+
+
+
+

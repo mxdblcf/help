@@ -1,0 +1,9 @@
+mongodb单机版手顺：
+1、官网下载对应的mongo server安装包（https://www.mongodb.com/try/download/community?tck=docs_server ubuntu下载deb版本）
+2、deb安装完成后，使用命令service mongod start启动mongod
+3、命令 service mongod status查看状态，绿色为启动正常，红色为启动失败
+4、若启动失败，查看/var/log/mongodb/mongodb.log日志文件，在文件中检索error,查看error信息。如果是权限问题，
+   需要使用命令sudo chown -R mongodb:mongodb /var/lib/mongodb和sudo chown -R mongodb:mongodb /var/log/mongodb
+   更改mongo的数据文件和日志文件权限
+5、修改完成后再次使用第二步的启动方式，直到启动成功。
+6、可以使用可视化工具来查看Mongodb中的数据（如：mongo compass、robo mongo或者idea的mongodb插件等）

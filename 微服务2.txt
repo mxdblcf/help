@@ -1,0 +1,34 @@
+微服务基础:
+1、微服务通过业务区分的方式进行独立部署
+2、微服务通过某种方式进行整合，从而可以做到最基本的相互调用，来满足业务的整体需求（SOA的架构体系（RPC））
+3、微服务需要的基础组件：注册中心、全链路监控、熔断和降级机制、API网关、统一配置中心、消息体系、数据库
+4、原生老版本的springcloud中调用服务的组件:ribbon（负载均衡）
+5、consul对服务都要进行健康检查，所以每个注册到consul的服务必须引入spring-boot-starter-actuator，用来通过监控接口获取当前服务的状态
+
+
+
+                spring cloud原生rpc             dubbo
+协议                   Http                可指定协议（如HTTP、TCP）
+服务注册方式          eureka、consul        zookeeper、nacos
+服务调用方式            feign               通过Api提供的接口，直接进行调用
+
+
+
+
+
+6、降级和熔断：两种功能，都是用来处理被调用方如果出现异常该如何处理的逻辑。
+
+
+
+
+gradle编译加快配置：
+
+  org.gradle.daemon=true  // 开启线程守护，第一次编译时开线程，之后就不会再开了
+  org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8  // 配置编译时的虚拟机大小
+  org.gradle.parallel=true  // 开启并行编译，相当于多条线程再走
+  org.gradle.configureondemand=true   启用新的孵化模式
+
+将上述配置写入~/.gradle/gradle.properties文件中
+
+
+

@@ -1,0 +1,27 @@
+1.chrome的翻墙代理问题
+	 google-chrome --proxy-server="socks5://127.0.0.1:1089"/vv
+
+
+	 google-chrome --proxy-server="http://127.0.0.1:8889"
+
+
+2.go包导入失败，  
+		package main改成自己的
+		首字母是否大写
+
+
+3. k8s或者istio镜像问题
+少那个就抓到那个，查看deply，然后dockerhub
+例如
+ kubectl get pod -n istio-system   查看istio的pod有哪些
+
+
+kubectl describe pod istio-egressgateway-7d4f75956-7hq84 -n istio-system  找到pod后， 查看详细信息，就能知道缺少什么image   
+
+
+docker.io/istio/proxyv2:1.10.2 缺少这个
+
+
+外部ip访问k8s
+kubectl patch svc -n istio-system prometheus -p '{"spec": {"type": "NodePort"}}'
+

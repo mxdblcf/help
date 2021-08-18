@@ -1,0 +1,28 @@
+﻿本地缓存的实现:
+Guava Cache(LRU)
+Caffine(LFU)
+Ehcache(可自定义算法种类)
+
+
+
+缓存中间件：
+redis(是以key value的形式来存储数据的，value的类型有：String,list，hash,set，sortedSet,不常用类型:bitmap(bit数组),地理位置（经纬度）)
+
+
+spring配置缓存的步骤：
+1、引入RedisConnectionFactory的实现（此处使用的是luttce的实现）
+2、引入CacheManager的实现（使用spring自带的RedisCacheManager）
+3、给配置类加上@EnableCaching的注解
+
+
+simpleKeyGenerator的情况下，spring缓存key是这样的：
+"<cacheNames>::<key>"
+"user::5"
+
+@Cacheable:适用于读数据的service方法,用来将从数据库中读出的数据缓存起来。
+@CacheEvict:按指定的key,清除缓存(适用于更新、插入等数据修改的方法，并且在非高并发场景下，可以使用)
+@CachePut:会无条件的将方法的返回值写入指定的key中（适用于更新、插入等数据修改方法，并在高并发场景下，免除了CacheEvict之后查询数据库的操作。）
+@Caching: 调用一个方法来操作多个缓存可使用该注解。
+@CacheConfig: 用来指定统一的key前缀。放在类头上。
+redis命令参考：
+http://doc.redisfans.com/   命令大全

@@ -1,0 +1,19 @@
+服务网关：主要解决本分布式体系以外的调用方来调用该体系中的服务的问题。
+        能够做到外界只需要通过连接服务网关就可以访问内部服务，
+        而不需要知道内部相关的实现，服务网关除了路由之外，还可以做相应的请求过滤和校验等功能。
+        对于spring cloud体系服务网关有两套（zuul(1.0版本使用servlet容器来实现对http请求的接收，2.0的版本采用netty的nio来实现对http请求的接收)、
+        spring cloud gateway（集成spring webflux的异步Http请求接收来实现相关功能。）
+        spring cloud gateway默认提供给我们19种不同的过滤器，无需实现，只需配置即可使用。
+        路由、限流、过滤（nginx：路由、用lua来实现一个令牌桶算法（限流）、）
+消息总线机制（spring-cloud-stream）：目前原生仅支持两种消息队列（kafka、rabbitmq）
+并发限流机制的算法：令牌桶算法（guava中的Ratelimiter）
+分布式服务跟踪（spring-cloud-sleuth（链路采集）、spring-cloud-zipkin（链路信息收集））：用来跟踪微服务的调用链路，并且将链路中的节点信息给予反馈。
+
+                                                        consul-consumer-feign（服务名称）
+                                                        ,b04fea268a197713（traceId,一条链路的唯一标志）
+                                                        ,ad096b0e813e33a9(spanId,一次请求的标志，并不唯一，一个链路中可能有多个spanId)
+                                                        ,false(是否需要收集相关日志)
+                                                        链路信息收集的相关其他的中间件：skywalking、promethus
+
+
+VUE.js:数据与页面交互完全分离，可以做到用数据去驱动页面交互的效果。

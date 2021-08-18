@@ -1,0 +1,38 @@
+jenkins手顺：
+一、安装：
+1、先将软件仓库需要的key加入系统：
+     wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+2、更新软件仓库并且安装：
+
+  sudo apt-get update
+  sudo apt-get install jenkins
+3、启动jenkins:
+  sudo systemctl start jenkins
+4、查看jenkins状态：
+  sudo systemctl status jenkins
+  如果状态为active,则启动成功
+5、修改配置文件：
+   sudo vim /etc/default/jenkins
+   修改端口号HTTP_PORT
+   修改jenkins用户权限（主要是你的代码目录权限）
+6、重新启动jenkins:
+   sudo systemctl restart jenkins
+7、访问jenkins页面：localhost:你自定义的端口号
+   第一次登录时，初始密码在: /var/lib/jenkins/secrets/initialAdminPassword
+二、部署项目(以部署一个maven的web项目为例)：
+1、安装插件：
+   Maven Integration plugin
+   Deploy to container Plugin
+   安装完插件需要重新启动jenkins: localhost:你自定义的端口号/restart
+2、新建项目：
+   在build阶段，填写项目pom.xml的绝对路径
+   在post-step阶段，填写脚本，使jenkins拿到打包之后的结果（一个war）,放在jenkins操作目录中。
+   在构建后操作中，配置tomcat
+
+
+
+
+
+
+
+
